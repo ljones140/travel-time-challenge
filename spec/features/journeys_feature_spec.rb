@@ -2,6 +2,10 @@ require 'rails_helper'
 
 feature 'journeys' do
 
+    before do
+      allow_any_instance_of(Journey).to receive(:city_mapper_call) { 10 }
+    end
+
   context 'no journeys added' do
 
     scenario 'displays add journey prompt' do
