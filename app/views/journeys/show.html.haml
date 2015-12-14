@@ -1,2 +1,4 @@
+%h2 Start Time: #{@journey.start_time.strftime("%d/%m/%Y %H:%M")}
 - @journey.visits.each do |visit|
-  %p Post Code: #{visit.postcode}  Arrival Time: #{visit.arrival_time}
+  %p Post Code: #{visit.postcode}  Arrival Time: #{visit.arrival_time.strftime("%H:%M")}
+= link_to 'New Journey', root_path
