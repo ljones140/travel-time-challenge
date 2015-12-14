@@ -1,1 +1,2 @@
-%p Arrival Time: #{ @journey.arrival_time }
+- @journey.visits.each do |visit|
+  %p Post Code: #{visit.postcode}  Arrival Time: #{visit.arrival_time}

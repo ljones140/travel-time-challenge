@@ -5,14 +5,16 @@ class Journey < ActiveRecord::Base
 
   has_many :visits
 
-  def arrival_time
-    visit = visits.first
-    city_mapper_call(visit)
+  def calculate_arrival_times
+    visits.each do |visit|
+      visit.arrival_time = start_time + travel_minutes(visit)*60
+      visit.save
+    end
   end
 
   private
 
-  def city_mapper_call(visit)
+  def travel_minutes(visit)
     response = HTTParty.get("https://developer.citymapper.com/api/1/traveltime/?startcoord=#{START_LAT}%2C#{START_LON}&endcoord=#{visit.latitude}%2C#{visit.longitude}&time=2015-12-13T19%3A00%3A02-0500&time_type=departure&key=#{CITY_MAPPER_KEY}")
     response["travel_time_minutes"]
   end

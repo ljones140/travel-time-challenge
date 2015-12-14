@@ -1,4 +1,6 @@
+- if @journey.visits.count > 0
+  = link_to 'Calculate Journey Time', journey_path(@journey)
 = form_for [@journey, @visit] do |f|
   = f.label :postcode, 'Post Code'
   = f.text_area :postcode
-  = f.submit 'Calculate Journey Time'
+  = f.submit 'Add Visit'

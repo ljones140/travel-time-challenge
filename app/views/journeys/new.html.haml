@@ -1,1 +1,5 @@
-= link_to "Add Visit", new_journey_visit_path(@journey)
+= form_for @journey do |f|
+  = f.label 'Start Time', :start_time
+  = f.time_select :start_time, value: Time.now
+  = f.submit 'Submit'
+-# = link_to "Add Visit", new_journey_visit_path(@journey)
